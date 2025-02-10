@@ -14,11 +14,13 @@
 
    await page.locator("//button[@type='submit']").click()
 
-   const errorMSG =await page.locator("//p[contains(@class, 'alert-content-text')]").textContent()
+   const errorMSG =await page.locator("//p[@class='oxd-text oxd-text--p oxd-alert-content-text']").textContent()
 
    console.log("Error msg is "+errorMSG)
 
- 
+   expect (errorMSG=="Invalid credentials").toBeTruthy();
+
+ //p[@class='oxd-text oxd-text--p oxd-alert-content-text']
 
  })
 
