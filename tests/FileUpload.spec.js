@@ -5,7 +5,7 @@ test ("File upload demo  ", async ({page})=> {
 
 await page.goto("https://the-internet.herokuapp.com/upload")
 
-await page.locator('#file-upload').setInputFiles("C:/Users/Ankit Shrivastava/Desktop/Access/image1.jpg")
+await page.locator('#file-upload').setInputFiles("./upload/image1.jpg")
 
 await page.waitForTimeout(5000)
 
