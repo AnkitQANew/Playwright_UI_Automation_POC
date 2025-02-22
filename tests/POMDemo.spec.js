@@ -4,6 +4,8 @@ const {test,expect} = require ('@playwright/test')
   const LoginPage = require('../pages/LoginPage')
   const Homepage  = require('../pages/Homepage')
 
+   const testData =   JSON.parse(JSON.stringify(require('../testdata.json')))
+
 
 
 test ("Verify the url",   async ({page})=> {
@@ -12,7 +14,7 @@ test ("Verify the url",   async ({page})=> {
     const login_page =   new LoginPage(page)
     const Home_page  =   new Homepage(page)
 
-    await login_page.loginToApplication("Mark21@gmail.com","admin@123")
+    await login_page.loginToApplication(testData.username,testData.password)
     
     await page.waitForTimeout(5000)
 
