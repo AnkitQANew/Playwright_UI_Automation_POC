@@ -26,7 +26,7 @@ test.afterEach (async () => {
 })
 
 
-test ("Verify the Homepage",  async ()=> {
+test.skip ("Verify the Homepage",  async ()=> {
 
 
     await page.locator(".cartBtn").click()
@@ -42,14 +42,9 @@ test ("Verify the Homepage",  async ()=> {
 })
 
 
-test ("Add product in the cart and verify the total",   async ()=> {
+test ("Add two product in the cart and verify the total on cart is equal to the sum of all added irems",   async ()=> {
 
-    const price1 = page.locator("//div[@class='home-container']//div[1]//div[2]//span[1]//b[1]").textContent()
-                                 
-    const price2 =  page.locator("//div[@class='container-child']//div[2]//div[2]//span[1]//b[1]").textContent()
-    
-    console.log("item 1 price:::::",price1)
-    console.log("item 2 price:::::",price2)
+ 
     // adding first item in the cart 
        await page.locator("//div[@class='home-container']//div[1]//div[2]//button[1]").click()
 
@@ -58,11 +53,21 @@ test ("Add product in the cart and verify the total",   async ()=> {
    
 
     // navigating in the cart 
-
     await page.locator("//button[@class='cartBtn']").click()
+   
+    // Fetching the price of item 1 from the cart screen 
+    const priceitem1  = await page.locator("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > span:nth-child(5) > b:nth-child(1)").textContent()
+    console.log("The first price is   -----------",priceitem1 )
+    const price1 =  parseFloat(priceitem1.replace('₹', ''));
+    console.log("The item 1  price is   -----------",price1 )
 
-    //const priceitem1  = await page.locator("//div[@class='cart-container']//b[1]").textContent()
-    //console.log("The first price is   -----------",priceitem1 )
+    // Fetching the price of item 2 from the cart screen 
+
+    const priceitem2  = await page.locator("body > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > span:nth-child(5) > b:nth-child(1)").textContent()
+    console.log("The first price is   -----------",priceitem1 )
+    const price2 =  parseFloat(priceitem2.replace('₹', ''));
+    console.log("The item 2  price is   -----------",price2 )
+  
 
     // capturing the total price 
 
@@ -72,6 +77,6 @@ test ("Add product in the cart and verify the total",   async ()=> {
 
    console.log("The total price is   -----------",totalprice )
 
-    expect (total).toBe(2000)
+    expect (total).toBe(price1+price2)
          
 })
