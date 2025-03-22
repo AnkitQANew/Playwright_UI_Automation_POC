@@ -14,7 +14,9 @@ test ("Verify the url",   async ({page})=> {
     const login_page =   new LoginPage(page)
     const Home_page  =   new Homepage(page)
 
-    await login_page.loginToApplication(testData.username,testData.password)
+    //await login_page.loginToApplication(testData.username,testData.password)
+
+    await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
     
     await page.waitForTimeout(5000)
 

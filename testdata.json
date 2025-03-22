@@ -1,5 +1,18 @@
 {
-  "username" : "Mark21@gmail.com",
-  "password" : "admin@123"
+  "CorrectUsername"   : "Mark21@gmail.com",
+  "CorrectPassword"   : "admin@123",
+  "IncorrectUsername" : "Mark2221@gmail.com",
+  "IncorrectPassword" : "admin@123",
+  "BlankPassword"     : "",
+
+
+
+  "ApplicationURL"    : "https://freelance-learn-automation.vercel.app/login",
+
+
+
+
+
+  "LoginErrorMSG"  :   "Email and Password Doesn't match"
 
 }
