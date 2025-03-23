@@ -47,10 +47,6 @@ const {test,expect} = require ('@playwright/test')
     const Home_page  =   new Homepage(page)
     const cart_screen=   new CartScreen(page)
 
-   /* await page.goto(testData.ApplicationURL)
-    await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
-    await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
- */
     await expect(page).toHaveTitle("Learn Automation Courses")
 
     await Home_page.addToCart_item_1.click()
@@ -60,7 +56,6 @@ const {test,expect} = require ('@playwright/test')
 
     expect (cart_screen.courseName_1).toBeVisible()
    
-
   })
 
   test ("Verify that if user adds one item in the cart then cart count gets chnages to 1", async({page})=> {
@@ -69,10 +64,6 @@ const {test,expect} = require ('@playwright/test')
     const Home_page  =   new Homepage(page)
     const cart_screen=   new CartScreen(page)
 
-    /*await page.goto(testData.ApplicationURL)
-    await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
-    await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
-*/
     await expect(page).toHaveTitle("Learn Automation Courses")
 
     await Home_page.addToCart_item_1.click()
