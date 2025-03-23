@@ -7,18 +7,32 @@ const {test,expect} = require ('@playwright/test')
 
   const testData =   JSON.parse(JSON.stringify(require('../testdata.json')))
 
+
+  test.beforeEach(async ({ page }) => {
+  
+    const login_page =   new LoginPage(page)
+    await page.goto(testData.ApplicationURL)
+    await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
+  });
+  
+  test.afterEach(async ({ page }) => {
+  
+    const Home_page  =   new Homepage(page)
+  
+    await Home_page.logOutFromApp()
+  
+  });
+
   test ("Verify that if user click on the cart button then user must be navigate to the cart page", async({page})=> {
     
     const login_page =   new LoginPage(page)
     const Home_page  =   new Homepage(page)
     const cart_screen=   new CartScreen(page)
 
-    await page.goto(testData.ApplicationURL)
-
+    /*await page.goto(testData.ApplicationURL)
     await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
-
     await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
-
+  */
     await expect(page).toHaveTitle("Learn Automation Courses")
 
     await Home_page.cartbtn.click()
@@ -33,12 +47,10 @@ const {test,expect} = require ('@playwright/test')
     const Home_page  =   new Homepage(page)
     const cart_screen=   new CartScreen(page)
 
-    await page.goto(testData.ApplicationURL)
-
+   /* await page.goto(testData.ApplicationURL)
     await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
-
     await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
-
+ */
     await expect(page).toHaveTitle("Learn Automation Courses")
 
     await Home_page.addToCart_item_1.click()
@@ -57,12 +69,10 @@ const {test,expect} = require ('@playwright/test')
     const Home_page  =   new Homepage(page)
     const cart_screen=   new CartScreen(page)
 
-    await page.goto(testData.ApplicationURL)
-
+    /*await page.goto(testData.ApplicationURL)
     await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
-
     await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
-
+*/
     await expect(page).toHaveTitle("Learn Automation Courses")
 
     await Home_page.addToCart_item_1.click()

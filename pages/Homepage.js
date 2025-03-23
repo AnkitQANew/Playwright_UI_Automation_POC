@@ -7,13 +7,13 @@ class Homepage
    {
       this.page = page
 
-      this.menu                        = page.locator("//img[@alt='menu']")
-      this.signout                     = page.locator("//button[normalize-space()='Sign out']")
+      this.menu                        = "//img[@alt='menu']"
+      this.signout                     = "//button[normalize-space()='Sign out']"
       this.cartbtn                     = page.locator("//button[@class='cartBtn']")
       this.HomepageHeading             = page.locator("//h1[normalize-space()='Learn Automation Courses']")
       this.addToCart_item_1            = page.locator("//div[@class='home-container']//div[1]//div[2]//button[1]")
       this.removeFromCart_1            = page.locator("//button[normalize-space()='Remove from Cart']")
-      //this.removeFromCart_1            = page.locator("//button[normalize-space()='Remove from Cart']")
+      //      this.menu                        = page.locator("#img[@alt='menu']")
 
    }
     
