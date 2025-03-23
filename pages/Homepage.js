@@ -13,6 +13,7 @@ class Homepage
       this.HomepageHeading             = page.locator("//h1[normalize-space()='Learn Automation Courses']")
       this.addToCart_item_1            = page.locator("//div[@class='home-container']//div[1]//div[2]//button[1]")
       this.removeFromCart_1            = page.locator("//button[normalize-space()='Remove from Cart']")
+      //this.removeFromCart_1            = page.locator("//button[normalize-space()='Remove from Cart']")
 
    }
     
