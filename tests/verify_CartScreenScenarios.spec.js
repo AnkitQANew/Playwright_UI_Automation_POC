@@ -59,7 +59,7 @@ const {test,expect} = require ('@playwright/test')
   })
 
   test ("Verify that if user adds one item in the cart then cart count gets chnages to 1", async({page})=> {
-    
+  
     const login_page =   new LoginPage(page)
     const Home_page  =   new Homepage(page)
     const cart_screen=   new CartScreen(page)

@@ -7,7 +7,7 @@ const {test,expect} = require ('@playwright/test')
   const testData =   JSON.parse(JSON.stringify(require('../testdata.json')))
 
 
-  test.skip ("Verify Login with valid credentials--> User must be login into the App ", async({page})=> {
+  test("Verify Login with valid credentials--> User must be login into the App ", async({page})=> {
     
     const login_page =   new LoginPage(page)
     const Home_page  =   new Homepage(page)
@@ -22,7 +22,7 @@ const {test,expect} = require ('@playwright/test')
 
   })
 
-  test.skip ("Verify Login with invalid credentials--> User must not be login into the App and Error msg should be shown", async({page})=> {
+  test ("Verify Login with invalid credentials--> User must not be login into the App and Error msg should be shown", async({page})=> {
     
     const login_page =   new LoginPage(page)
     const Home_page  =   new Homepage(page)
@@ -39,12 +39,13 @@ const {test,expect} = require ('@playwright/test')
 
     expect (text=="USER Email Doesn't Exist").toBeTruthy()
     
+    await page.waitForTimeout(2000)
     expect (login_page.errorMsg1).toBeVisible()
 
   })
 
 
-  test.skip ("Verify Login when user provides the correct username but doesnot provide the password", async({page})=> {
+  test("Verify Login when user provides the correct username but doesnot provide the password", async({page})=> {
     
     const login_page =   new LoginPage(page)
     const Home_page  =   new Homepage(page)
@@ -81,11 +82,7 @@ const {test,expect} = require ('@playwright/test')
 
     await expect(page).toHaveTitle("Learn Automation Courses")
 
-    await Home_page.menu.click()
-
-    await page.waitForTimeout(3000)
-
-    await Home_page.signout.click()
+   await Home_page.logOutFromApp();
 
     await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/login")
   })

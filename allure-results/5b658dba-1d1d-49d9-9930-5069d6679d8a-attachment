@@ -1,0 +1,108 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Verify that if user add any item in the cart then on the cart page it gets added
+- Location: D:\PlaywrightAutomation_POC\tests\verify_CartScreenScenarios.spec.js:44:3
+
+# Error details
+
+```
+Error: browserType.launch: Executable doesn't exist at C:\Users\Ankit Shrivastava\AppData\Local\ms-playwright\chromium-1161\chrome-win\chrome.exe
+╔═════════════════════════════════════════════════════════════════════════╗
+║ Looks like Playwright Test or Playwright was just installed or updated. ║
+║ Please run the following command to download new browsers:              ║
+║                                                                         ║
+║     npx playwright install                                              ║
+║                                                                         ║
+║ <3 Playwright Team                                                      ║
+╚═════════════════════════════════════════════════════════════════════════╝
+```
+
+# Test source
+
+```ts
+   1 | const {test,expect} = require ('@playwright/test')
+   2 |
+   3 |   //const loginScreen =  require("../pages/LoginPage")
+   4 |   const LoginPage     = require('../pages/LoginPage')
+   5 |   const Homepage      = require('../pages/Homepage')
+   6 |   const CartScreen    = require ('../pages/CartScreen')
+   7 |
+   8 |   const testData =   JSON.parse(JSON.stringify(require('../testdata.json')))
+   9 |
+  10 |
+  11 |   test.beforeEach(async ({ page }) => {
+  12 |   
+  13 |     const login_page =   new LoginPage(page)
+  14 |     await page.goto(testData.ApplicationURL)
+  15 |     await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
+  16 |   });
+  17 |   
+  18 |   test.afterEach(async ({ page }) => {
+  19 |   
+  20 |     const Home_page  =   new Homepage(page)
+  21 |   
+  22 |     await Home_page.logOutFromApp()
+  23 |   
+  24 |   });
+  25 |
+  26 |   test ("Verify that if user click on the cart button then user must be navigate to the cart page", async({page})=> {
+  27 |     
+  28 |     const login_page =   new LoginPage(page)
+  29 |     const Home_page  =   new Homepage(page)
+  30 |     const cart_screen=   new CartScreen(page)
+  31 |
+  32 |     /*await page.goto(testData.ApplicationURL)
+  33 |     await login_page.loginToApplication(testData.CorrectUsername,testData.CorrectPassword)
+  34 |     await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
+  35 |   */
+  36 |     await expect(page).toHaveTitle("Learn Automation Courses")
+  37 |
+  38 |     await Home_page.cartbtn.click()
+  39 |
+  40 |     expect (page).toHaveURL("https://freelance-learn-automation.vercel.app/cart")  
+  41 |
+  42 |   })
+  43 |
+> 44 |   test ("Verify that if user add any item in the cart then on the cart page it gets added", async({page})=> {
+     |   ^ Error: browserType.launch: Executable doesn't exist at C:\Users\Ankit Shrivastava\AppData\Local\ms-playwright\chromium-1161\chrome-win\chrome.exe
+  45 |     
+  46 |     const login_page =   new LoginPage(page)
+  47 |     const Home_page  =   new Homepage(page)
+  48 |     const cart_screen=   new CartScreen(page)
+  49 |
+  50 |     await expect(page).toHaveTitle("Learn Automation Courses")
+  51 |
+  52 |     await Home_page.addToCart_item_1.click()
+  53 |     await page.waitForTimeout(2000)
+  54 |     
+  55 |     await Home_page.cartbtn.click()
+  56 |
+  57 |     expect (cart_screen.courseName_1).toBeVisible()
+  58 |    
+  59 |   })
+  60 |
+  61 |   test ("Verify that if user adds one item in the cart then cart count gets chnages to 1", async({page})=> {
+  62 |     
+  63 |     const login_page =   new LoginPage(page)
+  64 |     const Home_page  =   new Homepage(page)
+  65 |     const cart_screen=   new CartScreen(page)
+  66 |
+  67 |     await expect(page).toHaveTitle("Learn Automation Courses")
+  68 |
+  69 |     await Home_page.addToCart_item_1.click()
+  70 |     await page.waitForTimeout(2000)
+  71 |     
+  72 |     await Home_page.cartbtn.click()
+  73 |
+  74 |     const cartCount = await cart_screen.cartItemCount.textContent()
+  75 |
+  76 |     expect (cartCount==1).toBeTruthy()
+  77 |
+  78 |   })
+```
